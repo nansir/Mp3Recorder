@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION
+    resourcePrefix "AndroidMP3RecorderLibrary_"    //这个随便填
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+    }
+
+    sourceSets.main {
+        jni.srcDirs = [] // This prevents the auto generation of Android.mk
+        jniLibs.srcDir 'src/main/libs'
+        // This is not necessary unless you have precompiled libraries in your project.
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile libSupportAppcompat_v4
+}
